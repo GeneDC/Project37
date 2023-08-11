@@ -25,6 +25,10 @@ public class PlayerControler : MonoBehaviour
 
         inputDirection = Vector3.Normalize(inputDirection) * baseSpeed;
 
+	if (inputDirection.z > 0) {
+		//switch to other texture
+	}
+
         characterController.SimpleMove(inputDirection * Time.fixedDeltaTime);
     }
 
