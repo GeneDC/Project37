@@ -27,4 +27,5 @@ public class PlayerControler : MonoBehaviour
 
         characterController.SimpleMove(inputDirection * Time.fixedDeltaTime);
     }
+
 }
