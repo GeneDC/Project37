@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerControler : MonoBehaviour
 {
     [SerializeField]
-    private int baseSpeed = 69;
+    private int baseSpeed = 37;
 
     private CharacterController characterController;
 
