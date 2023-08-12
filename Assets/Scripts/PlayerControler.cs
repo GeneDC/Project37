@@ -10,17 +10,15 @@ public class PlayerControler : MonoBehaviour
 
     private CharacterController characterController;
 
-    [SerializeField]
-    private Material playerMaterial;
-
-    [SerializeField]
-    private Texture frontTexture;
-    [SerializeField]
-    private Texture backTexture;
+    private Sprite sprite;
 
     void Start()
     {
+        sprite = GetComponentInChildren<Sprite>();
+        Debug.Assert(sprite != null, "Can't find 'Sprite' component in children.");
+
         characterController = GetComponent<CharacterController>();
+        Debug.Assert(characterController != null, "Can't find 'CharacterController' component.");
     }
 
     private void FixedUpdate()
@@ -33,29 +31,15 @@ public class PlayerControler : MonoBehaviour
 
         inputDirection = Vector3.Normalize(inputDirection) * baseSpeed;
 
-        Debug.Assert(playerMaterial && frontTexture && backTexture, "Missing player materials or textures!");
-        if (playerMaterial && frontTexture && backTexture)
+        if (characterController)
         {
-            if (inputDirection.z <= 0)
-            {
-                playerMaterial.SetTexture("_MainTex", frontTexture);
-            }
-            else if (inputDirection.z > 0)
-            {
-                playerMaterial.SetTexture("_MainTex", backTexture);
-            }
+            characterController.Move(inputDirection * Time.fixedDeltaTime);
         }
 
-        if (inputDirection.x > 0)
+        if (sprite)
         {
-            transform.localScale = new(-1, 1, 1);
+            sprite.SetDirection(inputDirection);
         }
-        else if (inputDirection.x < 0)
-        {
-            transform.localScale = new(1, 1, 1);
-        }
-
-        characterController.SimpleMove(inputDirection * Time.fixedDeltaTime);
     }
 
 }

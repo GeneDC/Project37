@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
         Vector3 movement = Mathf.Min(distanceToPlayer, speed * Time.fixedDeltaTime) * directionToPlayer;
 
-        characterController.SimpleMove(movement);
+        characterController.Move(movement);
 
         sprite.SetDirection(movement);
     }
