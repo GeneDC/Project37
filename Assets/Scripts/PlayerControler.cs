@@ -36,11 +36,11 @@ public class PlayerControler : MonoBehaviour
         Debug.Assert(playerMaterial && frontTexture && backTexture, "Missing player materials or textures!");
         if (playerMaterial && frontTexture && backTexture)
         {
-            if (inputDirection.z > 0)
+            if (inputDirection.z <= 0)
             {
                 playerMaterial.SetTexture("_MainTex", frontTexture);
             }
-            else if (inputDirection.z < 0)
+            else if (inputDirection.z > 0)
             {
                 playerMaterial.SetTexture("_MainTex", backTexture);
             }
